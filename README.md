@@ -1,4 +1,4 @@
-## Friday Night Funkin': Sync Engine
+# Friday Night Funkin': Sync Engine
 
 This is the fork of Friday Night Funkin, a game originally made for Ludum Dare 47 "Stuck In a Loop".
 
@@ -16,7 +16,7 @@ IF YOU WANT TO JUST DOWNLOAD AND PLAY THE ENGINE. GO TO RELEASE THEN DOWNLOAD IT
 
 IF YOU WANNA BUILD THE ENGINE CONTINUE READING
 
-### Installing the Dependencies
+# Installing the Dependencies
 
 First, you need to install Haxe and HaxeFlixel. I'm too lazy to write and keep updated with that setup (which is pretty simple). 
 1. [Install Haxe 4.1.5](https://haxe.org/download/version/4.1.5/)
