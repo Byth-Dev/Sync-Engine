@@ -842,8 +842,8 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 		
 		// Add engine watermark shit
-		engineWatermark = new FlxText(4, healthBarBG.y + 50, 0, "SE v" + MainMenuState.syncEngineVer, 18);
-		engineWatermark.setFormat(Paths.font("vcr.ttf"), 18, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		engineWatermark = new FlxText(4, healthBarBG.y + 50, 0, "Sync Core Engine v" + MainMenuState.syncEngineVer, 16);
+		engineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		engineWatermark.scrollFactor.set();
 		
 		if (PreferencesMenu.getPref('watermark'))
@@ -853,19 +853,6 @@ class PlayState extends MusicBeatState
 		else
 		{
 			engineWatermark = null;
-		}
-		
-		notesHitTxt = new FlxText(70.55, 194.75, "", 16);
-		notesHitTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		notesHitTxt.scrollFactor.set();
-		
-		if (PreferencesMenu.getPref('vanilla-hud'))
-		{
-			notesHitTxt = null;
-		}
-		else
-		{
-			add(notesHitTxt);
 		}
 
 		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y + 50, 0, "", 16);
@@ -893,6 +880,7 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+		engineWatermark.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
@@ -1960,6 +1948,8 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
+		
+		scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Combo: " + totalNotes + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | N/A";
 
 		if (PreferencesMenu.getPref('vanilla-hud'))
 		{
@@ -1967,22 +1957,16 @@ class PlayState extends MusicBeatState
 		}
 		else if (misses < 1)
 		{
-			scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | FC";
+			scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Combo: " + totalNotes + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | FC";
 		}
 		else if (misses > 0)
 		{
-			scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | SDCB";
-		}
-		else if (songScore == 0)
-		{
-			scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | N/A";
+			scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Combo: " + totalNotes + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | SDCB";
 		}
 		else if (misses > 9)
 		{
-			scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | Clear";
+			scoreTxt.text = "Score: " + songScore + " | Misses: " + misses + " | Combo: " + totalNotes + " | Accuracy: " + formatFloat(accuracy, 2) + "%" + " | Clear";
 		}
-		
-		notesHitTxt.text = 'Notes Hit: ' + totalNotes + ' Notes';
 
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
@@ -2835,7 +2819,7 @@ class PlayState extends MusicBeatState
 		switch(rating.toLowerCase())
 		{
 			case "sick":
-				totalNotesHit += 0.99;
+				totalNotesHit += 1.0;
 			case "good":
 				totalNotesHit += 0.51;
 			case "bad":

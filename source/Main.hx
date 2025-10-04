@@ -13,6 +13,8 @@ import openfl.events.NetStatusEvent;
 import openfl.media.Video;
 import openfl.net.NetConnection;
 import openfl.net.NetStream;
+import GraphicsPreload;
+import ui.PreferencesMenu;
 
 class Main extends Sprite
 {
@@ -93,6 +95,15 @@ class Main extends Sprite
 		#if !mobile
 		addChild(fpsCounter);
 		#end
+		
+		if (PreferencesMenu.getPref('preload-graphics'))
+		{
+			GraphicsPreload.preload();
+		}
+		else
+		{
+			GraphicsPreload.cancelPreload();
+		}
 		/* 
 			video = new Video();
 			addChild(video);

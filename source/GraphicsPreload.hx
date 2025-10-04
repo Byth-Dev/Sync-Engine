@@ -12,8 +12,6 @@ class GraphicsPreload
 
     public static function preload():Void
     {
-		// Preloads game assets (some of)
-		
 		// Icons and Characters
         preloadFolder("assets/preload/images/icons", "icons/");
         preloadFolder("assets/shared/characters", "characters/");
@@ -53,13 +51,13 @@ class GraphicsPreload
 		preloadFolder("assets/exclude/music", "music/");
 		preloadFolder("assets/exclude/sounds", "sounds/");
 
-        trace("Preloading complete! complete: game assets preloaded!");
+        trace("Preloading complete. Assets are preloaded successfully!");
     }
 	
 	// When preload setting is not checked
 	public static function cancelPreload():Void
 	{
-		trace("Canceled Preloading");
+		trace("Preloading failed or disabled. Continuing without preloading.");
 	}
 	
 	// Self explainatory
@@ -83,7 +81,7 @@ class GraphicsPreload
         {
             var name = Path.withoutExtension(file);
             var path = Paths.sound(pathPrefix + name); // Get the correct fucking path
-            FlxG.sound.load(path); // Preload into the memo
+            FlxG.sound.load(path); // Preload into the memory shit
         }
     }
 }

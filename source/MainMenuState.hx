@@ -38,7 +38,8 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	
-	public static var syncEngineVer = "1.0";
+	public static var zethDevStuff = "-Zeth";
+	public static var syncEngineVer = "1.2" + zethDevStuff;
 
 	override function create()
 	{
@@ -59,8 +60,8 @@ class MainMenuState extends MusicBeatState
 
 		var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBG'));
 		bg.scrollFactor.x = 0;
-		bg.scrollFactor.y = 0.15;
-		bg.setGraphicSize(Std.int(bg.width * 1.1));
+		bg.scrollFactor.y = 0.17;
+		bg.setGraphicSize(Std.int(bg.width * 1.2));
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = true;
@@ -116,10 +117,10 @@ class MainMenuState extends MusicBeatState
 		}
 
 		FlxG.cameras.reset(new SwagCamera());
-		FlxG.camera.follow(camFollow, null, 0.06);
+		FlxG.camera.follow(camFollow, null, 10);
 		// FlxG.camera.setScrollBounds(bg.x, bg.x + bg.width, bg.y, bg.y + bg.height * 1.2);
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "0.2.8.1 FNF - 1.0 Sync Engine", 18);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "0.2.8.1 FNF - " + syncEngineVer + " SCE", 18);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

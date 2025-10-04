@@ -32,7 +32,6 @@ import openfl.net.NetStream;
 import shaderslmfao.BuildingShaders.BuildingShader;
 import shaderslmfao.BuildingShaders;
 import shaderslmfao.ColorSwap;
-import GraphicsPreload;
 import ui.PreferencesMenu;
 
 using StringTools;
@@ -70,16 +69,6 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		
-		if (PreferencesMenu.getPref('preload-graphics'))
-		{
-			GraphicsPreload.preload();
-		}
-		else
-		{
-			GraphicsPreload.cancelPreload();
-		}
-		
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod'], framework: OPENFL});
 		// FlxG.bitmap.clearCache();
